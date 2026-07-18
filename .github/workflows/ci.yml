@@ -20,7 +20,7 @@ jobs:
       fail-fast: false
       matrix:
         # Test the supported PHP range so we do not promise versions we do not run.
-        php: ['8.1', '8.3']
+        php: ['8.1', '8.2', '8.3', '8.4']
     steps:
       - uses: actions/checkout@v4
 

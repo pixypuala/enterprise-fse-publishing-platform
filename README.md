@@ -51,7 +51,16 @@ tracked in the internal roadmap; nothing here is claimed as done until it is.
 - Admin health/status screen (models, post counts, schema version).
 - Schema.org JSON-LD structured-data builder for programs (`src/Seo/`) — framework-free, unit-tested; the WordPress glue that echoes it into a `<script type="application/ld+json">` is the remaining boundary.
 - FSE block theme: design tokens, header/footer parts, index/single/archive templates, hero + program-card-grid patterns with designed empty states.
-- CI (PHP 8.1 + 8.3): composer validate, PHP lint, PHPCS/WPCS, PHPUnit.
+- CI (PHP 8.1 / 8.2 / 8.3 / 8.4): composer validate, PHP lint, PHPCS/WPCS, PHPUnit.
+
+### Evidence artifacts
+
+Reproducible, command-grounded evidence for this build (WordPress-Proof canvas):
+
+- [`docs/audit/BASELINE-AUDIT.md`](docs/audit/BASELINE-AUDIT.md) — discovery inventory + real install/test/standards/static results and honest gap lists.
+- [`docs/security/THREAT-MODEL.md`](docs/security/THREAT-MODEL.md) — assets, boundaries, and threat table grounded in the actual code (reduced attack surface: no REST/AJAX/upload/SQL/remote).
+- [`docs/audit/FINAL-AUDIT.md`](docs/audit/FINAL-AUDIT.md) — per-item PASS/N-A/NOT-VERIFIED review, honest quality scorecard, and maturity classification.
+- [`docs/audit/RELEASE-EVIDENCE.md`](docs/audit/RELEASE-EVIDENCE.md) — version/commit/PHP results plus an explicit "not executed" section with accepted residual risks.
 
 **Planned (not yet built)**
 
