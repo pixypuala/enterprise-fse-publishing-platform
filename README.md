@@ -6,6 +6,59 @@ A production-style WordPress publishing system that proves modern block-theme, p
 
 This project is not considered complete when the UI looks good. It must demonstrate discovery, architecture, code quality, accessibility, security, performance, test design, deployment, recovery, documentation, and public communication.
 
+## Getting started
+
+Requires PHP 8.1+ and Composer.
+
+```bash
+composer install     # install dev tooling (PHPUnit, PHPCS, WPCS)
+composer test        # run the pure-domain unit suite (no WordPress needed)
+composer lint        # WordPress coding standards (PHPCS)
+composer lint:fix    # auto-fix fixable standards violations
+```
+
+To run the live demo in the browser with [WordPress Playground](https://wordpress.org/playground/)
+(Node 18+), mounting the theme and plugin from this checkout:
+
+```bash
+npx @wp-playground/cli@latest server \
+  --blueprint=playground/blueprint.json \
+  --mount=wordpress/themes:/wordpress/wp-content/mu-mount/themes \
+  --mount=wordpress/plugins:/wordpress/wp-content/mu-mount/plugins
+```
+
+### Repository layout
+
+| Path | Owns |
+|------|------|
+| `wordpress/plugins/enterprise-publishing/` | Durable domain: content models, capabilities, migrations, health screen. Survives a theme swap. |
+| `wordpress/themes/enterprise-fse/` | Presentation only: `theme.json` tokens, templates, parts, patterns. |
+| `tests/unit/` | Framework-free unit tests for the domain policy. |
+| `playground/` | Portable browser demo blueprint. |
+| `docs/` | Product brief, architecture/ADRs, quality/security/a11y/perf, test & release plan. |
+
+## Implementation status
+
+Honest snapshot — what runs today versus what is planned. Planned items are
+tracked in the internal roadmap; nothing here is claimed as done until it is.
+
+**Built and tested**
+
+- Theme/plugin boundary: content models live in the plugin, presentation in the theme.
+- Three governed content models (Program, Event, Story) via a single data-driven registry.
+- Server-authoritative capability matrix (contributor/editor/administrator) — unit-tested privilege boundaries.
+- Versioned, idempotent migration ledger with downgrade protection.
+- Admin health/status screen (models, post counts, schema version).
+- FSE block theme: design tokens, header/footer parts, index/single/archive templates, hero + program-card-grid patterns with designed empty states.
+- CI (PHP 8.1 + 8.3): composer validate, PHP lint, PHPCS/WPCS, PHPUnit.
+
+**Planned (not yet built)**
+
+- Custom server-rendered blocks with the Interactivity API (filters, tabs, accordions).
+- Editor TypeScript/React interfaces and block unit tests.
+- Playwright editorial journeys, WCAG 2.2 AA audit record, performance budgets.
+- SEO/structured data, privacy export/delete, optional AI adapter.
+
 ## PCAAP
 
 ### Problem

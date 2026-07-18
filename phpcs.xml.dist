@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<ruleset name="Enterprise FSE Publishing Platform">
+	<description>WordPress coding standards for plugin and theme PHP.</description>
+
+	<!-- What to scan. -->
+	<file>wordpress</file>
+	<file>tests</file>
+
+	<!-- Ignore build/vendor output. -->
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<!-- Target PHP the project actually supports. -->
+	<config name="testVersion" value="8.1-"/>
+	<config name="minimum_wp_version" value="6.5"/>
+
+	<rule ref="WordPress-Extra">
+		<!-- Modern namespaced PSR-4 code: WP filename rules do not apply. -->
+		<exclude name="WordPress.Files.FileName"/>
+		<!-- Constructor property promotion / named args are intentional PHP 8 style. -->
+		<exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+	</rule>
+
+	<!--
+		The framework-free domain classes (ContentModels, Migrations) throw
+		developer-facing exceptions and must not call WordPress escaping
+		functions, since they run without WordPress loaded (that is what makes
+		the domain policy unit-testable). Exception messages are not HTML output.
+	-->
+	<rule ref="WordPress.Security.EscapeOutput.ExceptionNotEscaped">
+		<exclude-pattern>*/src/ContentModels/*</exclude-pattern>
+		<exclude-pattern>*/src/Migrations/*</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="enterprise-publishing"/>
+				<element value="enterprise-fse"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

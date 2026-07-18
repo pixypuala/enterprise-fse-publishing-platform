@@ -1,0 +1,27 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "Enterprise FSE Publishing Platform demo",
+		"description": "Boots WordPress with the Enterprise Publishing plugin and Enterprise FSE theme active, then opens the Programs archive."
+	},
+	"landingPage": "/?post_type=ep_program",
+	"preferredVersions": {
+		"php": "8.3",
+		"wp": "6.7"
+	},
+	"features": {
+		"networking": false
+	},
+	"steps": [
+		{ "step": "login", "username": "admin", "password": "password" },
+		{
+			"step": "installTheme",
+			"themeData": { "resource": "vfs", "path": "/wordpress/wp-content/mu-mount/themes/enterprise-fse" },
+			"options": { "activate": true }
+		},
+		{
+			"step": "activatePlugin",
+			"pluginPath": "/wordpress/wp-content/mu-mount/plugins/enterprise-publishing/enterprise-publishing.php"
+		}
+	]
+}

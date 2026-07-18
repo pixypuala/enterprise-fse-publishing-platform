@@ -1,0 +1,29 @@
+/*
+Theme Name:        Enterprise FSE
+Theme URI:         https://github.com/pixypuala/enterprise-fse-publishing-platform
+Author:            Pixyville
+Author URI:        https://github.com/pixypuala
+Description:       A governed Full Site Editing block theme for enterprise publishers. Presentation only — content models, capabilities, and workflow live in the companion Enterprise Publishing plugin, so this theme can be swapped without losing durable content.
+Requires at least: 6.5
+Tested up to:      6.7
+Requires PHP:      8.1
+Version:           0.1.0
+License:           GNU General Public License v2 or later
+License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain:       enterprise-fse
+Tags:              full-site-editing, block-patterns, accessibility-ready, editor-style, block-styles
+
+This theme, like WordPress, is licensed under the GPL.
+*/
+
+/*
+ * Block themes drive nearly all styling through theme.json. This file exists
+ * for the required theme header and for the few global rules that theme.json
+ * cannot express (e.g. accessible focus-visible fallbacks).
+ */
+
+:where(a):focus-visible,
+:where(button):focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent);
+	outline-offset: 2px;
+}
