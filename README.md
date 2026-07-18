@@ -49,6 +49,7 @@ tracked in the internal roadmap; nothing here is claimed as done until it is.
 - Server-authoritative capability matrix (contributor/editor/administrator) — unit-tested privilege boundaries.
 - Versioned, idempotent migration ledger with downgrade protection.
 - Admin health/status screen (models, post counts, schema version).
+- Schema.org JSON-LD structured-data builder for programs (`src/Seo/`) — framework-free, unit-tested; the WordPress glue that echoes it into a `<script type="application/ld+json">` is the remaining boundary.
 - FSE block theme: design tokens, header/footer parts, index/single/archive templates, hero + program-card-grid patterns with designed empty states.
 - CI (PHP 8.1 + 8.3): composer validate, PHP lint, PHPCS/WPCS, PHPUnit.
 
@@ -57,7 +58,7 @@ tracked in the internal roadmap; nothing here is claimed as done until it is.
 - Custom server-rendered blocks with the Interactivity API (filters, tabs, accordions).
 - Editor TypeScript/React interfaces and block unit tests.
 - Playwright editorial journeys, WCAG 2.2 AA audit record, performance budgets.
-- SEO/structured data, privacy export/delete, optional AI adapter.
+- Structured-data output wiring, privacy export/delete, optional AI adapter.
 
 ## PCAAP
 
