@@ -2,14 +2,14 @@
 /**
  * Unit tests for the migration ledger.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Tests;
+namespace Pixypuala\EnterprisePublishing\Tests;
 
-use Pixyville\EnterprisePublishing\Migrations\SchemaVersion;
+use Pixypuala\EnterprisePublishing\Migrations\SchemaVersion;
 use PHPUnit\Framework\TestCase;
 
 final class SchemaVersionTest extends TestCase {

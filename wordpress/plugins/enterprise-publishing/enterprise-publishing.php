@@ -6,17 +6,17 @@
  * Version:           0.1.0
  * Requires at least: 6.5
  * Requires PHP:      8.1
- * Author:            Pixyville
+ * Author:            Pixypuala
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       enterprise-publishing
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing;
+namespace Pixypuala\EnterprisePublishing;
 
 // Abort if accessed directly — plugin files must only run inside WordPress.
 if ( ! defined( 'ABSPATH' ) ) {
@@ -39,7 +39,7 @@ if ( is_readable( $composer_autoload ) ) {
 } else {
 	spl_autoload_register(
 		static function ( string $class_name ): void {
-			$prefix = 'Pixyville\\EnterprisePublishing\\';
+			$prefix = 'Pixypuala\\EnterprisePublishing\\';
 			if ( ! str_starts_with( $class_name, $prefix ) ) {
 				return;
 			}

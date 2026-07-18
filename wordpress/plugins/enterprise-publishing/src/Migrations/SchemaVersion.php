@@ -8,12 +8,12 @@
  * so the ordering/decision logic is unit-testable; the WordPress runner applies
  * the steps and persists the new version.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Migrations;
+namespace Pixypuala\EnterprisePublishing\Migrations;
 
 /**
  * Ordered, idempotent migration ledger.

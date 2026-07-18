@@ -6,14 +6,14 @@
  * performs the side effects for each step and stores the new version in an
  * option. Steps are matched by version number so the mapping stays explicit.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Migrations;
+namespace Pixypuala\EnterprisePublishing\Migrations;
 
-use Pixyville\EnterprisePublishing\Capabilities\CapabilityInstaller;
+use Pixypuala\EnterprisePublishing\Capabilities\CapabilityInstaller;
 
 /**
  * Applies pending migrations.

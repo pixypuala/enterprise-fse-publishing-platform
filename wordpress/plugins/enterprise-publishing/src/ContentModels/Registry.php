@@ -6,12 +6,12 @@
  * model is a one-line change here; the WordPress registration glue and the
  * capability matrix both read from this list, so they can never drift apart.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\ContentModels;
+namespace Pixypuala\EnterprisePublishing\ContentModels;
 
 /**
  * Central registry of governed content models.

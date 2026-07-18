@@ -2,15 +2,15 @@
 /**
  * Unit tests for the ContentModel value object and the Registry.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Tests;
+namespace Pixypuala\EnterprisePublishing\Tests;
 
-use Pixyville\EnterprisePublishing\ContentModels\ContentModel;
-use Pixyville\EnterprisePublishing\ContentModels\Registry;
+use Pixypuala\EnterprisePublishing\ContentModels\ContentModel;
+use Pixypuala\EnterprisePublishing\ContentModels\Registry;
 use PHPUnit\Framework\TestCase;
 
 final class ContentModelTest extends TestCase {

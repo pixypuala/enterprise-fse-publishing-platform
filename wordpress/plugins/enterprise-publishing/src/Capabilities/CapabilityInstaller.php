@@ -6,12 +6,12 @@
  * result onto WordPress role objects. Applying is idempotent, so it is safe to
  * run on every migration.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Capabilities;
+namespace Pixypuala\EnterprisePublishing\Capabilities;
 
 /**
  * Grants computed capabilities to WordPress roles.

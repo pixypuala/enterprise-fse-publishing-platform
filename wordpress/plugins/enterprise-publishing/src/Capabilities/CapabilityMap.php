@@ -8,14 +8,14 @@
  * Because it is pure, the entire authorization policy is unit-tested — no role
  * can silently gain a destructive capability without a test noticing.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Capabilities;
+namespace Pixypuala\EnterprisePublishing\Capabilities;
 
-use Pixyville\EnterprisePublishing\ContentModels\Registry;
+use Pixypuala\EnterprisePublishing\ContentModels\Registry;
 
 /**
  * Computes capability grants per role.

@@ -7,20 +7,20 @@
  * migrations, and expose a health screen. All WordPress-specific side effects
  * live in the adapters; this class only wires them to hooks.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing;
+namespace Pixypuala\EnterprisePublishing;
 
-use Pixyville\EnterprisePublishing\Admin\HealthScreen;
-use Pixyville\EnterprisePublishing\Capabilities\CapabilityInstaller;
-use Pixyville\EnterprisePublishing\Capabilities\CapabilityMap;
-use Pixyville\EnterprisePublishing\ContentModels\ModelRegistrar;
-use Pixyville\EnterprisePublishing\ContentModels\Registry;
-use Pixyville\EnterprisePublishing\Migrations\MigrationRunner;
-use Pixyville\EnterprisePublishing\Migrations\SchemaVersion;
+use Pixypuala\EnterprisePublishing\Admin\HealthScreen;
+use Pixypuala\EnterprisePublishing\Capabilities\CapabilityInstaller;
+use Pixypuala\EnterprisePublishing\Capabilities\CapabilityMap;
+use Pixypuala\EnterprisePublishing\ContentModels\ModelRegistrar;
+use Pixypuala\EnterprisePublishing\ContentModels\Registry;
+use Pixypuala\EnterprisePublishing\Migrations\MigrationRunner;
+use Pixypuala\EnterprisePublishing\Migrations\SchemaVersion;
 
 /**
  * Root object graph for the plugin.

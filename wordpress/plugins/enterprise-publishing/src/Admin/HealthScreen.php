@@ -6,15 +6,15 @@
  * their post counts, and the current vs. expected schema version. This is the
  * "can I trust this install?" screen the product brief calls for.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Admin;
+namespace Pixypuala\EnterprisePublishing\Admin;
 
-use Pixyville\EnterprisePublishing\ContentModels\Registry;
-use Pixyville\EnterprisePublishing\Migrations\SchemaVersion;
+use Pixypuala\EnterprisePublishing\ContentModels\Registry;
+use Pixypuala\EnterprisePublishing\Migrations\SchemaVersion;
 
 /**
  * Renders the Publishing Health admin page.

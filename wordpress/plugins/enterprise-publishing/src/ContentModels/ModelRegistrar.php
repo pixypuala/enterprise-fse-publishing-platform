@@ -6,12 +6,12 @@
  * framework-free ContentModel definitions into WordPress arguments, applying the
  * custom capability base so each model has its own capability set.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\ContentModels;
+namespace Pixypuala\EnterprisePublishing\ContentModels;
 
 /**
  * Registers every governed model with WordPress.

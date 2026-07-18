@@ -6,15 +6,15 @@
  * privilege boundaries so no future edit can silently hand a lower role a
  * destructive capability.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\Tests;
+namespace Pixypuala\EnterprisePublishing\Tests;
 
-use Pixyville\EnterprisePublishing\Capabilities\CapabilityMap;
-use Pixyville\EnterprisePublishing\ContentModels\Registry;
+use Pixypuala\EnterprisePublishing\Capabilities\CapabilityMap;
+use Pixypuala\EnterprisePublishing\ContentModels\Registry;
 use PHPUnit\Framework\TestCase;
 
 final class CapabilityMapTest extends TestCase {

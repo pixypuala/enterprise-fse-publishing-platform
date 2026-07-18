@@ -1,5 +1,5 @@
 {
-    "name": "pixyville/enterprise-fse-publishing-platform",
+    "name": "pixypuala/enterprise-fse-publishing-platform",
     "description": "Enterprise Full Site Editing publishing platform for WordPress: governed content models, capabilities, and a swappable FSE block theme.",
     "type": "project",
     "license": "GPL-2.0-or-later",
@@ -15,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Pixyville\\EnterprisePublishing\\": "wordpress/plugins/enterprise-publishing/src/"
+            "Pixypuala\\EnterprisePublishing\\": "wordpress/plugins/enterprise-publishing/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Pixyville\\EnterprisePublishing\\Tests\\": "tests/unit/"
+            "Pixypuala\\EnterprisePublishing\\Tests\\": "tests/unit/"
         }
     },
     "config": {

@@ -8,12 +8,12 @@
  * Keeping it free of WordPress function calls is what makes the domain rules
  * unit-testable without booting WordPress.
  *
- * @package Pixyville\EnterprisePublishing
+ * @package Pixypuala\EnterprisePublishing
  */
 
 declare( strict_types=1 );
 
-namespace Pixyville\EnterprisePublishing\ContentModels;
+namespace Pixypuala\EnterprisePublishing\ContentModels;
 
 /**
  * Immutable description of one content model.
