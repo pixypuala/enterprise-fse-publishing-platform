@@ -66,7 +66,7 @@ passes. The commands that do apply were run:
 ```
 
 ### `find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l`
-All 18 non-vendor PHP files reported `No syntax errors detected`. Filtering the
+All 31 non-vendor PHP files reported `No syntax errors detected`. Filtering the
 output for anything that is *not* that line produced zero lines (no errors).
 
 ### `vendor/bin/phpunit`
@@ -74,22 +74,22 @@ output for anything that is *not* that line produced zero lines (no errors).
 PHPUnit 10.5.64 by Sebastian Bergmann and contributors.
 
 Runtime:       PHP 8.5.8
-....................                                              20 / 20 (100%)
+.......................................                           39 / 39 (100%)
 
 Time: 00:00.031, Memory: 8.00 MB
 
-OK (20 tests, 43 assertions)
+OK (39 tests, 89 assertions)
 ```
 
 ### `vendor/bin/phpcs --report=summary`
 ```
-.................. 18 / 18 (100%)
+............................... 31 / 31 (100%)
 
 Time: 1.65 secs; Memory: 14MB
 
 PHPCS_EXIT=0
 ```
-Zero errors, zero warnings across 18 files. Standard is defined in `phpcs.xml.dist`
+Zero errors, zero warnings across 31 files. Standard is defined in `phpcs.xml.dist`
 (WordPress + PHPCompatibilityWP).
 
 ## Baseline result table (canvas §5.3)
@@ -103,8 +103,8 @@ Zero errors, zero warnings across 18 files. Standard is defined in `phpcs.xml.di
 | Activation | Not executed — no live WordPress in checkout (documented boundary). Activation path (`Plugin::on_activate`) reviewed by reading: registers types, runs migrations, flushes rewrites. |
 | Deactivation | Not executed — documented boundary. `Plugin::on_deactivate` reviewed: flushes rewrites only, preserves data and capabilities. |
 | Build | Not applicable — no JS/build pipeline exists in this repository. |
-| Test result | PASS — 20 tests, 43 assertions, PHPUnit 10.5.64. |
-| Coding-standard result | PASS — PHPCS/WPCS, 18 files, 0 issues. |
+| Test result | PASS — 39 tests, 89 assertions, PHPUnit 10.5.64. |
+| Coding-standard result | PASS — PHPCS/WPCS, 31 files, 0 issues. |
 | Static-analysis result | Not executed — no PHPStan config present (documented boundary; PHP `-l` syntax lint passes on all files). |
 | Known security findings | None found in review. Reduced attack surface (no REST/AJAX/upload/SQL/remote). See THREAT-MODEL.md. |
 | Known performance findings | None in current scope; health screen uses `wp_count_posts` per model (bounded by 3 models). No unbounded queries. |

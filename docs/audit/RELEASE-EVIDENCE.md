@@ -24,7 +24,7 @@ $ composer validate --strict
 ./composer.json is valid
 ```
 
-### PHP syntax lint (all 18 non-vendor files)
+### PHP syntax lint (all 31 non-vendor files)
 ```
 $ find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 (every file: "No syntax errors detected"; zero error lines)
@@ -35,14 +35,14 @@ $ find . -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 php -l
 $ vendor/bin/phpunit
 PHPUnit 10.5.64 by Sebastian Bergmann and contributors.
 Runtime:       PHP 8.5.8
-....................                                              20 / 20 (100%)
-OK (20 tests, 43 assertions)
+.......................................                           39 / 39 (100%)
+OK (39 tests, 89 assertions)
 ```
 
 ### Coding standards
 ```
 $ vendor/bin/phpcs --report=summary
-.................. 18 / 18 (100%)
+............................... 31 / 31 (100%)
 PHPCS_EXIT=0
 ```
 WordPress Coding Standards + PHPCompatibilityWP (`phpcs.xml.dist`); 0 errors, 0 warnings.
@@ -56,8 +56,8 @@ false`). Local tool run additionally executed cleanly on PHP 8.5.8.
 
 | Evidence item | Result |
 |---------------|--------|
-| Unit-test result | PASS — 20 tests / 43 assertions |
-| Coding-standard result | PASS — PHPCS/WPCS, 0 issues, 18 files |
+| Unit-test result | PASS — 39 tests / 89 assertions |
+| Coding-standard result | PASS — PHPCS/WPCS, 0 issues, 31 files |
 | Static-analysis result | Not executed — no PHPStan config (PHP `-l` lint passes) |
 | PHP matrix result | PASS in CI — 8.1 / 8.2 / 8.3 / 8.4 |
 | Composer validation | PASS — valid (`--strict`) |

@@ -49,7 +49,9 @@ tracked in the internal roadmap; nothing here is claimed as done until it is.
 - Server-authoritative capability matrix (contributor/editor/administrator) — unit-tested privilege boundaries.
 - Versioned, idempotent migration ledger with downgrade protection.
 - Admin health/status screen (models, post counts, schema version).
-- Schema.org JSON-LD structured-data builder for programs (`src/Seo/`) — framework-free, unit-tested; the WordPress glue that echoes it into a `<script type="application/ld+json">` is the remaining boundary.
+- Schema.org JSON-LD structured-data builder for programs (`src/Seo/ProgramSchema.php`) plus a framework-free, script-safe renderer (`src/Seo/JsonLdScript.php`, `JSON_HEX_TAG`/`JSON_HEX_AMP` so `<`/`&` can never break out of the tag) — unit-tested; the `wp_head` output (`ProgramSchemaHead`) is thin guarded glue.
+- Privacy export/erase data-shapers (`src/Privacy/`) — framework-free classes that build the WordPress personal-data exporter structure and the eraser plan (published content retained as a business record with an honest reason; unpublished traces removable), unit-tested; the exporter/eraser filter registration (`PrivacyRegistrar`) is thin guarded glue.
+- Optional AI content-assistant seam (`src/Ai/`) — a framework-free interface with a disabled-by-default null implementation and one example adapter shape; enable AND permission both required, no external calls, unit-tested.
 - FSE block theme: design tokens, header/footer parts, index/single/archive templates, hero + program-card-grid patterns with designed empty states.
 - CI (PHP 8.1 / 8.2 / 8.3 / 8.4): composer validate, PHP lint, PHPCS/WPCS, PHPUnit.
 
@@ -67,7 +69,7 @@ Reproducible, command-grounded evidence for this build (WordPress-Proof canvas):
 - Custom server-rendered blocks with the Interactivity API (filters, tabs, accordions).
 - Editor TypeScript/React interfaces and block unit tests.
 - Playwright editorial journeys, WCAG 2.2 AA audit record, performance budgets.
-- Structured-data output wiring, privacy export/delete, optional AI adapter.
+- Live wiring that still needs a running WordPress: the privacy record collector and JSON-LD head output verified in-browser, and a concrete provider-backed AI adapter behind the seam.
 
 ## PCAAP
 

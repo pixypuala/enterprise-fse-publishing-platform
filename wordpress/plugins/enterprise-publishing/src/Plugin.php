@@ -21,6 +21,8 @@ use Pixypuala\EnterprisePublishing\ContentModels\ModelRegistrar;
 use Pixypuala\EnterprisePublishing\ContentModels\Registry;
 use Pixypuala\EnterprisePublishing\Migrations\MigrationRunner;
 use Pixypuala\EnterprisePublishing\Migrations\SchemaVersion;
+use Pixypuala\EnterprisePublishing\Privacy\PrivacyRegistrar;
+use Pixypuala\EnterprisePublishing\Seo\ProgramSchemaHead;
 
 /**
  * Root object graph for the plugin.
@@ -44,6 +46,12 @@ final class Plugin {
 		// already current (a single option read).
 		$runner = new MigrationRunner( new SchemaVersion(), new CapabilityInstaller( new CapabilityMap( $this->registry ) ) );
 		add_action( 'init', array( $runner, 'run_if_needed' ), 20 );
+
+		// Structured-data output: emit program JSON-LD into the document head.
+		( new ProgramSchemaHead() )->register();
+
+		// Privacy: register the personal-data exporter and eraser callbacks.
+		( new PrivacyRegistrar( $this->registry ) )->register();
 
 		// Admin-only health/status screen.
 		if ( is_admin() ) {

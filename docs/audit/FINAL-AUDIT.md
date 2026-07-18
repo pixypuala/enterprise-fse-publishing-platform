@@ -14,7 +14,7 @@
 | Item | Status | Evidence / residual risk |
 |------|--------|--------------------------|
 | Requirements implemented | PASS (for the declared slice) | Content models, capability matrix, migrations, health screen, SEO builder all present and unit-tested. Planned items are declared unbuilt in README. |
-| Workflows produce correct results | PARTIAL / NOT VERIFIED end-to-end | Domain logic proven by 20 unit tests; full editorial workflow not E2E-tested (documented boundary). |
+| Workflows produce correct results | PARTIAL / NOT VERIFIED end-to-end | Domain logic proven by 39 unit tests; full editorial workflow not E2E-tested (documented boundary). |
 | State transitions valid | PASS | `SchemaVersion::pending()` ordering + downgrade refusal unit-tested. |
 | Edge cases handled | PASS | Invalid post-type key, empty program name, downgrade, absent role — all handled and (except absent role) unit-tested. |
 | Errors do not corrupt data | PASS | Migration persists per step (resume-safe); downgrade refused before any write. |
@@ -102,7 +102,7 @@ honestly is the proof this build is not yet standout.
 
 | Category | Score | One-line evidence |
 |----------|:----:|-------------------|
-| Correctness | 4/5 | 20 unit tests green; workflow not E2E-proven. |
+| Correctness | 4/5 | 39 unit tests green; workflow not E2E-proven. |
 | Security | 4/5 | Reduced surface (no REST/SQL/upload/SSRF); policy unit-tested; integration application of caps not yet tested. |
 | Performance | 3/5 | No unbounded queries by review; no profiling/budget evidence. |
 | Accessibility | 2/5 | Designed empty states; no automated or manual WCAG audit run. |
