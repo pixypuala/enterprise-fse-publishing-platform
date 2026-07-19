@@ -17,6 +17,17 @@ composer lint        # WordPress coding standards (PHPCS)
 composer lint:fix    # auto-fix fixable standards violations
 ```
 
+The server-rendered blocks and their editor interfaces build with pnpm (via
+Corepack). See `docs/STACK.md` for the full command list.
+
+```bash
+corepack pnpm install --ignore-workspace   # install block build tooling
+corepack pnpm run build                     # compile blocks into the plugin build/ dir
+corepack pnpm run lint                      # ESLint over the block sources
+corepack pnpm run type-check                # strict tsc type-check
+corepack pnpm run test:unit                 # Jest unit tests for framework-free block logic
+```
+
 To run the live demo in the browser with [WordPress Playground](https://wordpress.org/playground/)
 (Node 18+), mounting the theme and plugin from this checkout:
 
@@ -53,6 +64,8 @@ tracked in the internal roadmap; nothing here is claimed as done until it is.
 - Privacy export/erase data-shapers (`src/Privacy/`) — framework-free classes that build the WordPress personal-data exporter structure and the eraser plan (published content retained as a business record with an honest reason; unpublished traces removable), unit-tested; the exporter/eraser filter registration (`PrivacyRegistrar`) is thin guarded glue.
 - Optional AI content-assistant seam (`src/Ai/`) — a framework-free interface with a disabled-by-default null implementation and one example adapter shape; enable AND permission both required, no external calls, unit-tested.
 - FSE block theme: design tokens, header/footer parts, index/single/archive templates, hero + program-card-grid patterns with designed empty states.
+- Server-rendered dynamic block `enterprise-publishing/program-list` (`wordpress/plugins/enterprise-publishing/blocks/program-list/`): compiles with `@wordpress/scripts`; `render.php` lists governed programs (reusing the domain `Registry`, every value escaped, `ABSPATH`-guarded); a client-side name filter built on the Interactivity API (`view.ts`) with a framework-free, Jest-tested matching rule (`filter.ts`); a TypeScript/React editor interface (`edit.tsx`) previewing the real server output via `ServerSideRender`. Registered in PHP from the built `build/` directory by a guarded `BlockRegistrar`, so a checkout without a build step registers nothing rather than erroring.
+- Block build tooling on pnpm/`@wordpress/scripts`: lint (ESLint), type-check (strict `tsc`), unit test (Jest), and build/watch commands recorded in `docs/STACK.md`.
 - CI (PHP 8.1 / 8.2 / 8.3 / 8.4): composer validate, PHP lint, PHPCS/WPCS, PHPUnit.
 
 ### Evidence artifacts
@@ -66,10 +79,9 @@ Reproducible, command-grounded evidence for this build (WordPress-Proof canvas):
 
 **Planned (not yet built)**
 
-- Custom server-rendered blocks with the Interactivity API (filters, tabs, accordions).
-- Editor TypeScript/React interfaces and block unit tests.
+- Further dynamic blocks beyond the program list (tabs, accordions, statistics, related content).
 - Playwright editorial journeys, WCAG 2.2 AA audit record, performance budgets.
-- Live wiring that still needs a running WordPress: the privacy record collector and JSON-LD head output verified in-browser, and a concrete provider-backed AI adapter behind the seam.
+- Live wiring that still needs a running WordPress: the `program-list` block exercised in a real editor (inserter, inspector control, and front-end Interactivity filter), the privacy record collector and JSON-LD head output verified in-browser, and a concrete provider-backed AI adapter behind the seam.
 
 ## PCAAP
 

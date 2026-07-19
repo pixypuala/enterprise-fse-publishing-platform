@@ -15,6 +15,7 @@ declare( strict_types=1 );
 namespace Pixypuala\EnterprisePublishing;
 
 use Pixypuala\EnterprisePublishing\Admin\HealthScreen;
+use Pixypuala\EnterprisePublishing\Blocks\BlockRegistrar;
 use Pixypuala\EnterprisePublishing\Capabilities\CapabilityInstaller;
 use Pixypuala\EnterprisePublishing\Capabilities\CapabilityMap;
 use Pixypuala\EnterprisePublishing\ContentModels\ModelRegistrar;
@@ -49,6 +50,9 @@ final class Plugin {
 
 		// Structured-data output: emit program JSON-LD into the document head.
 		( new ProgramSchemaHead() )->register();
+
+		// Register the server-rendered blocks (no-op until built into build/).
+		( new BlockRegistrar() )->register();
 
 		// Privacy: register the personal-data exporter and eraser callbacks.
 		( new PrivacyRegistrar( $this->registry ) )->register();

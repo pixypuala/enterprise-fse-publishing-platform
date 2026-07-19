@@ -9,6 +9,8 @@
 	<!-- Ignore build/vendor output. -->
 	<exclude-pattern>*/vendor/*</exclude-pattern>
 	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<!-- Compiled block output (block.json copies, asset manifests) is generated. -->
+	<exclude-pattern>*/build/*</exclude-pattern>
 
 	<arg name="extensions" value="php"/>
 	<arg name="colors"/>

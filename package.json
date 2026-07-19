@@ -1,0 +1,28 @@
+{
+	"name": "enterprise-fse-publishing-platform",
+	"version": "0.1.0",
+	"description": "Build tooling for the Enterprise Publishing plugin's server-rendered blocks and editor interfaces.",
+	"license": "GPL-2.0-or-later",
+	"private": true,
+	"packageManager": "pnpm@11.14.0",
+	"scripts": {
+		"build": "NODE_OPTIONS=--no-warnings wp-scripts build --experimental-modules --webpack-src-dir=wordpress/plugins/enterprise-publishing/blocks --output-path=wordpress/plugins/enterprise-publishing/build",
+		"start": "NODE_OPTIONS=--no-warnings wp-scripts start --experimental-modules --webpack-src-dir=wordpress/plugins/enterprise-publishing/blocks --output-path=wordpress/plugins/enterprise-publishing/build",
+		"lint": "NODE_OPTIONS=--no-warnings wp-scripts lint-js wordpress/plugins/enterprise-publishing/blocks",
+		"type-check": "NODE_OPTIONS=--no-warnings tsc --noEmit",
+		"test:unit": "NODE_OPTIONS=--no-warnings wp-scripts test-unit-js"
+	},
+	"devDependencies": {
+		"@jest/globals": "^30.4.1",
+		"@types/react": "^18.3.31",
+		"@wordpress/block-editor": "^16.0.0",
+		"@wordpress/blocks": "^15.24.0",
+		"@wordpress/components": "^37.0.0",
+		"@wordpress/element": "^8.3.0",
+		"@wordpress/i18n": "^6.24.0",
+		"@wordpress/interactivity": "^6.51.0",
+		"@wordpress/scripts": "^33.0.0",
+		"@wordpress/server-side-render": "^6.27.0",
+		"typescript": "^5.9.3"
+	}
+}

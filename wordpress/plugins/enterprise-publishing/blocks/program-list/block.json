@@ -1,0 +1,26 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "enterprise-publishing/program-list",
+	"version": "0.1.0",
+	"title": "Program List",
+	"category": "widgets",
+	"icon": "portfolio",
+	"description": "Server-rendered list of governed programs with a client-side name filter powered by the Interactivity API.",
+	"keywords": [ "program", "list", "filter" ],
+	"textdomain": "enterprise-publishing",
+	"attributes": {
+		"maxItems": {
+			"type": "number",
+			"default": 6
+		}
+	},
+	"supports": {
+		"interactivity": true,
+		"html": false,
+		"align": [ "wide", "full" ]
+	},
+	"editorScript": "file:./index.js",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}
