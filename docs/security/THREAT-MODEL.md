@@ -1,7 +1,7 @@
 # Threat Model
 
 > Canvas §24. Grounded in the real code at commit
-> `aaf9b7bf9ed0e459b2a51eeee5d8d3fcff98b2fb`. Mitigations cite actual files.
+> `87847488aeb941915b2f9b9488085e31f1583f0a`. Mitigations cite actual files.
 > Where a mitigation is designed but not yet test-proven, the residual risk says
 > so — no mitigation is claimed as verified beyond what the unit suite covers.
 

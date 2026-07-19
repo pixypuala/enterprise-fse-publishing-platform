@@ -10,7 +10,7 @@
 | Field | Value |
 |-------|-------|
 | Plugin version (from header) | `0.1.0` |
-| Commit SHA (evidence time) | `aaf9b7bf9ed0e459b2a51eeee5d8d3fcff98b2fb` |
+| Commit SHA (evidence time) | `87847488aeb941915b2f9b9488085e31f1583f0a` |
 | Branch | `main` |
 | Evidence timestamp (UTC) | `2026-07-18T14:58:36Z` |
 | Build environment | Local: `PHP 8.5.8 (cli)`, Composer v2, PHPUnit `10.5.64`. CI: `ubuntu-latest`, `shivammathur/setup-php@v2`. |

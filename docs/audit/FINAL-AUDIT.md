@@ -6,7 +6,7 @@
 > does **not** issue the §30 certification statement — E2E, multisite,
 > accessibility, and performance were not executed, so certification is withheld.
 >
-> Commit: `aaf9b7bf9ed0e459b2a51eeee5d8d3fcff98b2fb` · Branch: `main` ·
+> Commit: `87847488aeb941915b2f9b9488085e31f1583f0a` · Branch: `main` ·
 > Plugin `0.1.0` · PHPUnit 20/20 · PHPCS 0 issues.
 
 ## 26.1 Correctness

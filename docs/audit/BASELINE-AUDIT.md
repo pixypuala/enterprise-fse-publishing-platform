@@ -10,7 +10,7 @@
 | Field | Value |
 |-------|-------|
 | Branch | `main` |
-| Commit (audit time) | `aaf9b7bf9ed0e459b2a51eeee5d8d3fcff98b2fb` |
+| Commit (audit time) | `87847488aeb941915b2f9b9488085e31f1583f0a` |
 | Plugin version (header) | `0.1.0` |
 | Requires at least (WP) | `6.5` |
 | Requires PHP | `8.1` |
@@ -97,7 +97,7 @@ Zero errors, zero warnings across 31 files. Standard is defined in `phpcs.xml.di
 | Item | Result |
 |------|--------|
 | Current branch | `main` |
-| Current commit | `aaf9b7bf9ed0e459b2a51eeee5d8d3fcff98b2fb` |
+| Current commit | `87847488aeb941915b2f9b9488085e31f1583f0a` |
 | Installation (`composer install`) | Succeeds; `vendor/` present, dev tools resolve. |
 | Composer validation | `./composer.json is valid` (`--strict`). |
 | Activation | Not executed — no live WordPress in checkout (documented boundary). Activation path (`Plugin::on_activate`) reviewed by reading: registers types, runs migrations, flushes rewrites. |
