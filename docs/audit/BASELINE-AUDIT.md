@@ -121,7 +121,7 @@ Zero errors, zero warnings across 31 files. Standard is defined in `phpcs.xml.di
 
 ## Missing documentation (honest gap list)
 
-- Several canvas §23 documents are not yet present (e.g. `docs/architecture/CAPABILITY-MODEL.md`, `docs/operations/ROLLBACK.md`, `docs/security/PRIVACY.md`). Architecture and ADRs exist under `docs/02-…`.
+- Several canvas §23 documents are not yet present (e.g. `docs/architecture/CAPABILITY-MODEL.md`, `docs/operations/ROLLBACK.md`, `docs/security/PRIVACY.md`).
 - No machine-readable compatibility report (`artifacts/compatibility/*`) — CI runs the matrix but does not emit the canvas §16.4 report files.
 
 ## Existing technical debt / production risks
