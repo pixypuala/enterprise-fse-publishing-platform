@@ -54,11 +54,13 @@ final class ContentModel {
 	private function assert_valid_key( string $key ): void {
 		if ( '' === $key || strlen( $key ) > 20 ) {
 			throw new \InvalidArgumentException(
+				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Developer-facing exception message from the framework-free domain; the key is source-declared, never user input, and never rendered.
 				sprintf( 'Content model key "%s" must be 1-20 characters.', $key )
 			);
 		}
 		if ( ! preg_match( '/^[a-z][a-z0-9_]*$/', $key ) ) {
 			throw new \InvalidArgumentException(
+				// phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Developer-facing exception message from the framework-free domain; the key is source-declared, never user input, and never rendered.
 				sprintf( 'Content model key "%s" must be lowercase [a-z0-9_] starting with a letter.', $key )
 			);
 		}

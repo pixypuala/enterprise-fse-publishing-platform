@@ -52,6 +52,7 @@ final class SchemaVersion {
 	 */
 	public function pending( int $installed ): array {
 		if ( $installed > self::CURRENT ) {
+			// phpcs:disable WordPress.Security.EscapeOutput.ExceptionNotEscaped -- Developer-facing exception message from the framework-free domain; both interpolated values are integers and the message is never rendered.
 			throw new \OutOfRangeException(
 				sprintf(
 					'Installed schema version %d is newer than this build (%d); refusing to downgrade.',
@@ -59,6 +60,7 @@ final class SchemaVersion {
 					self::CURRENT
 				)
 			);
+			// phpcs:enable WordPress.Security.EscapeOutput.ExceptionNotEscaped
 		}
 
 		$pending = array();

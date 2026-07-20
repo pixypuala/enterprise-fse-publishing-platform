@@ -1,0 +1,13 @@
+# Files that live in wordpress/plugins/enterprise-publishing/ but must not reach
+# a production site. Paths are relative to that plugin directory.
+# Consumed by bin/build-plugin.sh; mirrors the WP-CLI dist-archive convention.
+
+# TypeScript/JSX block sources. Only the compiled build/ output is executed at
+# runtime; shipping the sources would double the payload and expose test files.
+blocks
+
+# Dependency and tooling output that never belongs in a plugin.
+node_modules
+vendor
+dist
+.DS_Store

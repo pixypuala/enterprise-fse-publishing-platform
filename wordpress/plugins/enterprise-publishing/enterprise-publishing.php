@@ -27,16 +27,27 @@ const VERSION     = '0.1.0';
 const PLUGIN_FILE = __FILE__;
 
 /**
- * Autoloader.
+ * Register the class autoloader.
  *
- * Uses Composer's PSR-4 autoloader when the project has been installed with
- * `composer install` (the normal path). Falls back to a tiny built-in PSR-4
- * loader so the plugin still runs from a plain checkout without a vendor dir.
+ * Prefers a Composer autoloader shipped inside the plugin; the plugin has no
+ * runtime Composer dependencies, so in production the built-in PSR-4 fallback
+ * is the loading path. Only the plugin's own directory is consulted — reaching
+ * outside it would make the plugin depend on the layout of the site around it.
+ *
+ * Wrapped in a function so no variable from this file leaks into the global
+ * scope, where it could collide with another plugin's.
+ *
+ * @return void
  */
-$composer_autoload = __DIR__ . '/../../../vendor/autoload.php';
-if ( is_readable( $composer_autoload ) ) {
-	require_once $composer_autoload;
-} else {
+function register_autoloader(): void {
+	$autoload = __DIR__ . '/vendor/autoload.php';
+
+	if ( is_readable( $autoload ) ) {
+		require_once $autoload;
+
+		return;
+	}
+
 	spl_autoload_register(
 		static function ( string $class_name ): void {
 			$prefix = 'Pixypuala\\EnterprisePublishing\\';
@@ -51,6 +62,8 @@ if ( is_readable( $composer_autoload ) ) {
 		}
 	);
 }
+
+register_autoloader();
 
 // Boot the plugin once WordPress has loaded plugins.
 add_action(
