@@ -8,6 +8,11 @@
 *.min.js.map
 # pnpm lockfile is intentionally not tracked
 pnpm-lock.yaml
+assets/pnpm-lock.yaml
+# Asset renderer dependencies and the font cache it populates on first run
+assets/node_modules/
+assets/.fonts-cache/
+assets/source/fonts/
 # WordPress environment
 /wordpress-core/
 wp-config.php

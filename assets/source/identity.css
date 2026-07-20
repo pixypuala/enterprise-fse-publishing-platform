@@ -1,0 +1,93 @@
+/*
+ * Enterprise Publishing — visual identity.
+ *
+ * Every value the marketing assets use lives here as a token. Nothing
+ * downstream may introduce a raw colour, size, or radius.
+ *
+ * Direction: "the record". This plugin governs institutional publishing —
+ * content models, capability policy, versioned migrations, structured data —
+ * so the identity is archival, not technical: a parchment canvas, deep ink,
+ * hairlines the weight of a ruled ledger, and a single deep seal-green used
+ * scarcely on marks and status and generously on one full-bleed band. Oxblood
+ * is reserved exclusively for the one state that means "act now": a pending
+ * migration. Newsreader carries the editorial voice; Public Sans — the face of
+ * public-sector interfaces — carries the institutional one.
+ *
+ * It deliberately shares nothing with the sibling plugins in this portfolio:
+ * not the instrument-panel near-black of the delivery plugin, not the graphite
+ * and amber of the commerce plugin. Three products must not read as one
+ * template recoloured.
+ */
+
+@font-face {
+	font-family: 'Newsreader';
+	src: url('fonts/Newsreader.ttf') format('truetype');
+	font-weight: 200 800;
+	font-display: block;
+}
+
+@font-face {
+	font-family: 'Public Sans';
+	src: url('fonts/PublicSans.ttf') format('truetype');
+	font-weight: 100 900;
+	font-display: block;
+}
+
+:root {
+	/* Canvas — parchment, never paper white. */
+	--parchment: #f4efe4;
+	--parchment-deep: #e9e1cf;
+	--vellum: #fdfbf6;
+
+	/* Ink — warm near-black, tuned so body and muted both clear AAA on canvas. */
+	--ink: #17150f;
+	--ink-body: #34302a;
+	--ink-muted: #4e493c;
+
+	/* Ledger rules. */
+	--rule: #d4c9b1;
+	--rule-soft: #e3daC6;
+
+	/* Seal — the one accent. Deep institutional green. */
+	--seal: #14543a;
+	--seal-deep: #0d3626;
+	--seal-tint: rgba(20, 84, 58, 0.09);
+	--seal-line: rgba(20, 84, 58, 0.28);
+	--on-seal: #f4efe4;
+
+	/* Oxblood — reserved for "migration pending". Never decorative. */
+	--oxblood: #7c2b26;
+	--oxblood-tint: rgba(124, 43, 38, 0.09);
+	--oxblood-line: rgba(124, 43, 38, 0.3);
+
+	/* Product chrome — dark warm surfaces showing the real product. */
+	--chrome: #1a1813;
+	--chrome-raised: #26231b;
+	--chrome-line: rgba(212, 201, 177, 0.18);
+	--on-chrome: #f0eadc;
+	--on-chrome-muted: #a79d86;
+
+	/* Type. */
+	--display: 'Newsreader', Georgia, serif;
+	--ui: 'Public Sans', system-ui, sans-serif;
+
+	/* Radius — hierarchical: chips, controls, cards, tiles. */
+	--r-xs: 3px;
+	--r-sm: 6px;
+	--r-md: 10px;
+	--r-lg: 16px;
+	--r-tile: 22.5%;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--parchment);
+	color: var(--ink);
+	font-family: var(--ui);
+	-webkit-font-smoothing: antialiased;
+}

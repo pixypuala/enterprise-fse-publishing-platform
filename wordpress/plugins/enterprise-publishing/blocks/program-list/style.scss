@@ -1,0 +1,168 @@
+/**
+ * Front-end styles for the Program List block.
+ *
+ * Declared as the block's `style` in block.json, so WordPress loads it only on
+ * pages where the block is actually present.
+ *
+ * Every value is a token declared once on the block root; nothing below
+ * introduces a raw colour or size. The palette is the plugin's own identity —
+ * a deep institutional seal green against warm neutrals — but it is applied
+ * with restraint, because this markup lands inside somebody else's theme:
+ * the accent carries the link, the focus ring, and the item rule, and nothing
+ * else. Typography and canvas are inherited from the theme on purpose.
+ */
+
+.wp-block-enterprise-publishing-program-list {
+	--ep-seal: #14543a;
+	--ep-seal-strong: #0d3626;
+	--ep-seal-tint: rgba(20, 84, 58, 0.08);
+	--ep-ink: #17150f;
+	--ep-ink-muted: #4e493c;
+	--ep-rule: #d4c9b1;
+	--ep-surface: #fdfbf6;
+
+	--ep-r-sm: 6px;
+	--ep-space-1: 4px;
+	--ep-space-2: 8px;
+	--ep-space-3: 14px;
+	--ep-space-4: 22px;
+
+	--ep-control-pad-y: 0.75rem;
+	--ep-control-pad-x: 0.9rem;
+
+	color: var(--ep-ink);
+}
+
+/*
+ * Dark themes and dark OS preferences both exist; a block that stays on a warm
+ * near-white while the page around it goes dark reads as broken. The seal
+ * lightens to keep contrast on a dark surface rather than staying deep.
+ */
+@media ( prefers-color-scheme: dark ) {
+
+	.wp-block-enterprise-publishing-program-list {
+		--ep-seal: #74d3a6;
+		--ep-seal-strong: #a5e6c6;
+		--ep-seal-tint: rgba(116, 211, 166, 0.12);
+		--ep-ink: #f2ede1;
+		--ep-ink-muted: #b7ae99;
+		--ep-rule: #443f34;
+		--ep-surface: #26231d;
+	}
+}
+
+.wp-block-enterprise-publishing-program-list__controls {
+	margin-bottom: var(--ep-space-4);
+}
+
+.wp-block-enterprise-publishing-program-list__label {
+	display: block;
+	margin-bottom: var(--ep-space-2);
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--ep-ink-muted);
+}
+
+.wp-block-enterprise-publishing-program-list__search {
+	display: block;
+	/* Width is layout-driven; height comes from padding, never a fixed value. */
+	width: 100%;
+	min-height: 44px;
+	padding: var(--ep-control-pad-y) var(--ep-control-pad-x);
+	border: 1px solid var(--ep-rule);
+	border-radius: var(--ep-r-sm);
+	background: var(--ep-surface);
+	color: var(--ep-ink);
+	font: inherit;
+	line-height: 1.4;
+	transition: border-color 140ms ease, box-shadow 140ms ease;
+}
+
+.wp-block-enterprise-publishing-program-list__search::placeholder {
+	color: var(--ep-ink-muted);
+	opacity: 1;
+}
+
+.wp-block-enterprise-publishing-program-list__search:hover {
+	border-color: var(--ep-seal);
+}
+
+.wp-block-enterprise-publishing-program-list__search:focus,
+.wp-block-enterprise-publishing-program-list__search:focus-visible {
+	border-color: var(--ep-seal);
+	outline: 2px solid var(--ep-seal);
+	outline-offset: 2px;
+	box-shadow: 0 0 0 4px var(--ep-seal-tint);
+}
+
+.wp-block-enterprise-publishing-program-list__items {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.wp-block-enterprise-publishing-program-list__item {
+	margin: 0;
+	border-top: 1px solid var(--ep-rule);
+}
+
+.wp-block-enterprise-publishing-program-list__item:last-child {
+	border-bottom: 1px solid var(--ep-rule);
+}
+
+/*
+ * The Interactivity API filters by toggling `hidden` on the item. A display
+ * rule on the item would beat the attribute's default styling, so the hidden
+ * state is restated here — without it the filter would stop hiding anything.
+ */
+.wp-block-enterprise-publishing-program-list__item[hidden] {
+	display: none;
+}
+
+.wp-block-enterprise-publishing-program-list__link {
+	display: block;
+	padding: var(--ep-space-3) var(--ep-space-1) var(--ep-space-3) var(--ep-space-3);
+	border-left: 3px solid transparent;
+	color: var(--ep-ink);
+	font-weight: 600;
+	text-decoration: none;
+	transition: border-color 140ms ease, background-color 140ms ease, color 140ms ease;
+}
+
+.wp-block-enterprise-publishing-program-list__link:hover,
+.wp-block-enterprise-publishing-program-list__link:active {
+	border-left-color: var(--ep-seal);
+	background: var(--ep-seal-tint);
+	color: var(--ep-seal-strong);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+.wp-block-enterprise-publishing-program-list__link:focus,
+.wp-block-enterprise-publishing-program-list__link:focus-visible {
+	outline: 2px solid var(--ep-seal);
+	outline-offset: 2px;
+	border-left-color: var(--ep-seal);
+	background: var(--ep-seal-tint);
+}
+
+/* Designed empty state: finished and legible, never a bare sentence. */
+.wp-block-enterprise-publishing-program-list__empty {
+	margin: 0;
+	padding: var(--ep-space-4);
+	border: 1px dashed var(--ep-rule);
+	border-radius: var(--ep-r-sm);
+	background: var(--ep-surface);
+	color: var(--ep-ink-muted);
+	text-align: center;
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+
+	.wp-block-enterprise-publishing-program-list__search,
+	.wp-block-enterprise-publishing-program-list__link {
+		transition: none;
+	}
+}

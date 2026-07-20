@@ -1,0 +1,439 @@
+/*
+ * Publishing Health screen.
+ *
+ * Enqueued only on tools.php?page=enterprise-publishing-health, keyed on the
+ * hook suffix WordPress returns from add_management_page(), so no other admin
+ * screen pays for it.
+ *
+ * Every value is a token declared once on .ep-health. Nothing below introduces
+ * a raw colour. The palette is the plugin's own identity — parchment canvas,
+ * deep ink, one seal green for "the record is in order", oxblood reserved for
+ * the single state that means "act now" — rescoped to sit inside wp-admin
+ * rather than fight it.
+ *
+ * Typography deliberately uses locally available faces. wp-admin is a working
+ * tool: shipping a webfont download into every load of this screen would cost
+ * more than the editorial voice is worth here. The marketing assets carry the
+ * full Newsreader/Public Sans pairing; this screen carries its register with an
+ * old-style serif stack against the admin's own UI face.
+ */
+
+.ep-health {
+	/* Canvas and ink. */
+	--ep-parchment: #f4efe4;
+	--ep-parchment-deep: #e9e1cf;
+	--ep-vellum: #fdfbf6;
+	--ep-ink: #17150f;
+	--ep-ink-body: #34302a;
+	--ep-ink-muted: #4e493c;
+	--ep-rule: #d4c9b1;
+	--ep-rule-soft: #e3dac6;
+
+	/* Seal — the accent. */
+	--ep-seal: #14543a;
+	--ep-seal-strong: #0d3626;
+	--ep-seal-tint: rgba(20, 84, 58, 0.09);
+	--ep-seal-line: rgba(20, 84, 58, 0.3);
+	--ep-on-seal: #f4efe4;
+
+	/* Oxblood — migration pending only. Never decorative. */
+	--ep-alert: #7c2b26;
+	--ep-alert-strong: #601f1b;
+	--ep-alert-tint: rgba(124, 43, 38, 0.09);
+	--ep-alert-line: rgba(124, 43, 38, 0.32);
+
+	/* Elevation and focus. */
+	--ep-shadow: 0 1px 2px rgba(52, 42, 20, 0.06), 0 10px 24px rgba(52, 42, 20, 0.07);
+	--ep-focus: var(--ep-seal);
+
+	/* Type. */
+	--ep-display: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+
+	/* Radius — hierarchical: chips, controls, cards. */
+	--ep-r-sm: 6px;
+	--ep-r-md: 10px;
+	--ep-r-lg: 14px;
+
+	/* Rhythm. */
+	--ep-space-1: 4px;
+	--ep-space-2: 8px;
+	--ep-space-3: 12px;
+	--ep-space-4: 18px;
+	--ep-space-5: 26px;
+	--ep-space-6: 38px;
+
+	/*
+	 * The screen is one parchment sheet laid on the admin's neutral canvas,
+	 * with the cards raised off it. Without the sheet the header floats on
+	 * admin grey and the identity starts halfway down the page.
+	 */
+	max-width: 1140px;
+	margin-right: 20px;
+	padding: var(--ep-space-6);
+	background: var(--ep-parchment);
+	border: 1px solid var(--ep-rule);
+	border-radius: var(--ep-r-lg);
+	color: var(--ep-ink-body);
+}
+
+/*
+ * WordPress ships a dark admin colour scheme and honours the OS preference in
+ * several places; a screen that stays parchment-bright inside it reads broken.
+ * The palette inverts to warm charcoal without losing the seal/oxblood
+ * distinction, and both text tones stay above 7:1 on their surface.
+ */
+@media ( prefers-color-scheme: dark ) {
+
+	.ep-health {
+		--ep-parchment: #1e1c17;
+		--ep-parchment-deep: #2b2820;
+		--ep-vellum: #26231d;
+		--ep-ink: #f4efe4;
+		--ep-ink-body: #e2dccd;
+		--ep-ink-muted: #b7ae99;
+		--ep-rule: #443f34;
+		--ep-rule-soft: #363228;
+
+		--ep-seal: #74d3a6;
+		--ep-seal-strong: #a5e6c6;
+		--ep-seal-tint: rgba(116, 211, 166, 0.12);
+		--ep-seal-line: rgba(116, 211, 166, 0.38);
+		--ep-on-seal: #10281d;
+
+		--ep-alert: #f0a19b;
+		--ep-alert-strong: #f7c4c0;
+		--ep-alert-tint: rgba(240, 161, 155, 0.12);
+		--ep-alert-line: rgba(240, 161, 155, 0.38);
+
+		--ep-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 24px rgba(0, 0, 0, 0.3);
+	}
+}
+
+/* Header ------------------------------------------------------------------ */
+
+.ep-health__title {
+	margin: 0 0 var(--ep-space-2);
+	padding: 0;
+	font-family: var(--ep-display);
+	font-size: 34px;
+	font-weight: 600;
+	line-height: 1.1;
+	letter-spacing: -0.015em;
+	color: var(--ep-ink);
+}
+
+.ep-health__lede {
+	max-width: 62ch;
+	margin: 0 0 var(--ep-space-6);
+	font-size: 15px;
+	line-height: 1.6;
+	color: var(--ep-ink-muted);
+}
+
+/* Layout ------------------------------------------------------------------ */
+
+.ep-health__grid {
+	display: grid;
+	grid-template-columns: minmax(260px, 20rem) minmax(0, 1fr);
+	gap: var(--ep-space-5);
+	align-items: start;
+}
+
+@media ( max-width: 1000px ) {
+
+	.ep-health__grid {
+		grid-template-columns: minmax(0, 1fr);
+	}
+}
+
+.ep-health__card {
+	background: var(--ep-vellum);
+	border: 1px solid var(--ep-rule);
+	border-radius: var(--ep-r-lg);
+	box-shadow: var(--ep-shadow);
+	overflow: hidden;
+}
+
+.ep-health__cardhead {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--ep-space-2) var(--ep-space-4);
+	align-items: baseline;
+	justify-content: space-between;
+	padding: var(--ep-space-4) var(--ep-space-5);
+	background: var(--ep-parchment);
+	border-bottom: 1px solid var(--ep-rule);
+}
+
+.ep-health__cardtitle {
+	margin: 0;
+	padding: 0;
+	font-family: var(--ep-display);
+	font-size: 19px;
+	font-weight: 600;
+	line-height: 1.25;
+	color: var(--ep-ink);
+}
+
+.ep-health__cardmeta {
+	font-size: 13px;
+	font-weight: 500;
+	color: var(--ep-ink-muted);
+}
+
+/* Schema status ----------------------------------------------------------- */
+
+.ep-health__status {
+	padding: var(--ep-space-5);
+	border-left: 5px solid var(--ep-seal);
+}
+
+.ep-health__status.is-pending {
+	border-left-color: var(--ep-alert);
+}
+
+.ep-health__flag {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--ep-space-2);
+	min-height: 26px;
+	padding: var(--ep-space-1) var(--ep-space-3);
+	border-radius: 999px;
+	border: 1px solid var(--ep-seal-line);
+	background: var(--ep-seal-tint);
+	color: var(--ep-seal);
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+}
+
+.ep-health__flag::before {
+	content: '';
+	width: 7px;
+	height: 7px;
+	border-radius: 50%;
+	background: currentColor;
+	flex: none;
+}
+
+.is-pending .ep-health__flag {
+	border-color: var(--ep-alert-line);
+	background: var(--ep-alert-tint);
+	color: var(--ep-alert);
+}
+
+.ep-health__figure {
+	margin: var(--ep-space-4) 0 0;
+	font-family: var(--ep-display);
+	font-size: 52px;
+	font-weight: 600;
+	line-height: 1;
+	letter-spacing: -0.03em;
+	color: var(--ep-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+.ep-health__figure span {
+	font-size: 24px;
+	font-weight: 500;
+	color: var(--ep-ink-muted);
+}
+
+.ep-health__caption {
+	margin: var(--ep-space-3) 0 0;
+	font-size: 13px;
+	line-height: 1.55;
+	color: var(--ep-ink-muted);
+}
+
+.ep-health__steps {
+	margin: var(--ep-space-4) 0 0;
+	padding: var(--ep-space-4) 0 0;
+	border-top: 1px solid var(--ep-rule-soft);
+	list-style: none;
+}
+
+.ep-health__step {
+	display: grid;
+	grid-template-columns: auto minmax(0, 1fr);
+	gap: var(--ep-space-2);
+	align-items: start;
+	margin: 0 0 var(--ep-space-3);
+	font-size: 13px;
+	line-height: 1.5;
+	color: var(--ep-ink-body);
+}
+
+.ep-health__step:last-child {
+	margin-bottom: 0;
+}
+
+.ep-health__step::before {
+	content: '';
+	width: 8px;
+	height: 8px;
+	margin-top: 6px;
+	border-radius: 50%;
+	background: var(--ep-alert);
+}
+
+.ep-health__stepversion {
+	display: block;
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--ep-ink-muted);
+}
+
+/* Governed models --------------------------------------------------------- */
+
+.ep-health__table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+.ep-health__table th,
+.ep-health__table td {
+	padding: var(--ep-space-4) var(--ep-space-5);
+	border-bottom: 1px solid var(--ep-rule-soft);
+	text-align: left;
+	vertical-align: middle;
+}
+
+.ep-health__table th:last-child,
+.ep-health__table td:last-child {
+	text-align: right;
+}
+
+.ep-health__table thead th {
+	padding-top: var(--ep-space-3);
+	padding-bottom: var(--ep-space-3);
+	font-size: 11px;
+	font-weight: 700;
+	letter-spacing: 0.13em;
+	text-transform: uppercase;
+	color: var(--ep-ink-muted);
+}
+
+.ep-health__table tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.ep-health__model {
+	font-family: var(--ep-display);
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 1.25;
+	color: var(--ep-ink);
+}
+
+.ep-health__modeldesc {
+	margin: 3px 0 0;
+	font-size: 13px;
+	line-height: 1.45;
+	color: var(--ep-ink-muted);
+}
+
+.ep-health__key {
+	display: inline-block;
+	padding: var(--ep-space-1) var(--ep-space-2);
+	border-radius: var(--ep-r-sm);
+	background: var(--ep-parchment-deep);
+	color: var(--ep-ink-body);
+	font-family: inherit;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.04em;
+}
+
+.ep-health__count {
+	font-family: var(--ep-display);
+	font-size: 24px;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--ep-ink);
+	font-variant-numeric: tabular-nums;
+}
+
+/* A designed zero: finished and legible, never mistaken for a broken cell. */
+.ep-health__count.is-zero {
+	font-weight: 400;
+	color: var(--ep-ink-muted);
+}
+
+.ep-health__countunit {
+	display: block;
+	margin-top: 3px;
+	font-size: 11px;
+	font-weight: 600;
+	letter-spacing: 0.11em;
+	text-transform: uppercase;
+	color: var(--ep-ink-muted);
+}
+
+/* Empty state ------------------------------------------------------------- */
+
+.ep-health__empty {
+	padding: var(--ep-space-5);
+	border-top: 1px solid var(--ep-rule-soft);
+	background: var(--ep-parchment);
+}
+
+.ep-health__emptytitle {
+	margin: 0 0 var(--ep-space-2);
+	font-family: var(--ep-display);
+	font-size: 17px;
+	font-weight: 600;
+	color: var(--ep-ink);
+}
+
+.ep-health__emptytext {
+	max-width: 62ch;
+	margin: 0 0 var(--ep-space-4);
+	font-size: 13px;
+	line-height: 1.6;
+	color: var(--ep-ink-muted);
+}
+
+/* Actions ----------------------------------------------------------------- */
+
+.ep-health__action {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 44px;
+	padding: var(--ep-space-3) var(--ep-space-5);
+	border: 1px solid var(--ep-seal);
+	border-radius: var(--ep-r-md);
+	background: var(--ep-seal);
+	color: var(--ep-on-seal);
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 1;
+	text-decoration: none;
+	transition: background-color 140ms ease, border-color 140ms ease;
+}
+
+.ep-health__action:hover,
+.ep-health__action:active {
+	background: var(--ep-seal-strong);
+	border-color: var(--ep-seal-strong);
+	color: var(--ep-on-seal);
+}
+
+.ep-health__action:focus,
+.ep-health__action:focus-visible {
+	outline: 2px solid var(--ep-focus);
+	outline-offset: 2px;
+	box-shadow: none;
+	color: var(--ep-on-seal);
+}
+
+@media ( prefers-reduced-motion: reduce ) {
+
+	.ep-health__action {
+		transition: none;
+	}
+}

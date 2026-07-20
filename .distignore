@@ -6,6 +6,10 @@
 # runtime; shipping the sources would double the payload and expose test files.
 blocks
 
+# The WordPress.org marketing asset set. wordpress.org reads it from the
+# repository; a production site has no use for banners and screenshots.
+assets
+
 # Dependency and tooling output that never belongs in a plugin.
 node_modules
 vendor

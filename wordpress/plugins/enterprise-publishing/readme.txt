@@ -83,6 +83,18 @@ every post on the site.
 Nothing destructive. Rewrite rules are flushed; capabilities and content stay
 in place so deactivating temporarily never costs an editor their access.
 
+== Screenshots ==
+
+1. Publishing Health, under Tools. The schema version the database is actually
+   at against the version this build expects, every migration step that has
+   run, and each governed model — Programs, Events, Stories — with its post
+   type key and published count.
+2. The capability policy for a single model, exactly as the plugin computes it:
+   contributors author their own drafts, editors publish and manage everyone's
+   work, and only administrators may delete published content. Alongside it,
+   the Schema.org JSON-LD emitted into the document head for a program, and the
+   Program List block's filter on the front end.
+
 == Changelog ==
 
 = 0.1.0 =

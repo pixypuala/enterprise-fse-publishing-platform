@@ -1,0 +1,370 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Enterprise Publishing — Publishing Health</title>
+<link rel="stylesheet" href="identity.css">
+<style>
+	html, body { width: 100%; height: 100%; overflow: hidden; }
+
+	.shot {
+		container-type: inline-size;
+		width: 100%;
+		height: 100%;
+		padding: 4.6cqw 5.2cqw;
+		background:
+			radial-gradient(70% 90% at 100% 0%, rgba(20, 84, 58, 0.07), transparent 60%),
+			var(--parchment);
+		display: flex;
+		flex-direction: column;
+	}
+
+	header { margin-bottom: 3.4cqw; }
+	.eyebrow {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.7cqw;
+		font-size: 0.94cqw;
+		font-weight: 700;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
+		color: var(--seal);
+	}
+	.eyebrow::before {
+		content: '';
+		width: 2cqw;
+		height: 0.16cqw;
+		background: var(--seal);
+	}
+	h1 {
+		margin-top: 1cqw;
+		font-family: var(--display);
+		font-size: 3.9cqw;
+		font-weight: 500;
+		letter-spacing: -0.022em;
+		line-height: 1.02;
+		color: var(--ink);
+	}
+	.lede {
+		margin-top: 0.95cqw;
+		font-size: 1.32cqw;
+		font-weight: 400;
+		color: var(--ink-muted);
+		max-width: 56cqw;
+		line-height: 1.5;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: 26cqw 1fr;
+		gap: 2.2cqw;
+		align-items: start;
+	}
+
+	/* Schema status — the "can I trust this install?" answer, stated once. */
+	.status {
+		border-radius: 1.2cqw;
+		padding: 2cqw 1.8cqw;
+		background: var(--vellum);
+		border: 0.08cqw solid var(--rule);
+		border-left: 0.42cqw solid var(--seal);
+		box-shadow: 0 0.9cqw 2.2cqw rgba(50, 40, 20, 0.06);
+	}
+	.status__flag {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5cqw;
+		font-size: 0.9cqw;
+		font-weight: 700;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		padding: 0.42cqw 0.78cqw;
+		border-radius: 999px;
+		color: var(--seal);
+		background: var(--seal-tint);
+		border: 0.08cqw solid var(--seal-line);
+	}
+	.status__flag::before {
+		content: '';
+		width: 0.55cqw;
+		height: 0.55cqw;
+		border-radius: 50%;
+		background: var(--seal);
+	}
+	.status__num {
+		margin-top: 1.4cqw;
+		font-family: var(--display);
+		font-size: 4.4cqw;
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: -0.03em;
+		color: var(--ink);
+	}
+	.status__num small { font-size: 0.46em; color: var(--ink-muted); font-weight: 500; }
+	.status__caption {
+		margin-top: 0.7cqw;
+		font-size: 1.02cqw;
+		font-weight: 500;
+		color: var(--ink-muted);
+		line-height: 1.45;
+	}
+	.status__steps {
+		margin-top: 1.5cqw;
+		padding-top: 1.2cqw;
+		border-top: 0.08cqw solid var(--rule-soft);
+		display: grid;
+		gap: 0.75cqw;
+	}
+	.step {
+		display: grid;
+		grid-template-columns: auto 1fr;
+		gap: 0.7cqw;
+		align-items: start;
+		font-size: 0.96cqw;
+		line-height: 1.45;
+		color: var(--ink-body);
+	}
+	.step__tick {
+		width: 1.15cqw;
+		height: 1.15cqw;
+		margin-top: 0.12cqw;
+		border-radius: 50%;
+		background: var(--seal);
+		display: grid;
+		place-items: center;
+	}
+	.step__tick svg { width: 0.68cqw; height: 0.68cqw; }
+
+	/* Governed models — a ruled register, not a default WordPress table. */
+	.models {
+		border-radius: 1.2cqw;
+		background: var(--vellum);
+		border: 0.08cqw solid var(--rule);
+		box-shadow: 0 0.9cqw 2.2cqw rgba(50, 40, 20, 0.06);
+		overflow: hidden;
+	}
+	.models__head {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		padding: 1.35cqw 1.8cqw;
+		background: var(--parchment);
+		border-bottom: 0.08cqw solid var(--rule);
+	}
+	.models__title {
+		font-family: var(--display);
+		font-size: 1.6cqw;
+		font-weight: 600;
+		color: var(--ink);
+	}
+	.models__meta { font-size: 0.98cqw; font-weight: 500; color: var(--ink-muted); }
+
+	table { width: 100%; border-collapse: collapse; }
+	th {
+		text-align: left;
+		font-size: 0.86cqw;
+		font-weight: 700;
+		letter-spacing: 0.14em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+		padding: 1.05cqw 1.8cqw;
+		border-bottom: 0.08cqw solid var(--rule-soft);
+	}
+	th:last-child, td:last-child { text-align: right; }
+	td {
+		padding: 1.3cqw 1.8cqw;
+		border-bottom: 0.08cqw solid var(--rule-soft);
+		vertical-align: middle;
+	}
+	tr:last-child td { border-bottom: 0; }
+
+	.model__name {
+		font-family: var(--display);
+		font-size: 1.42cqw;
+		font-weight: 600;
+		color: var(--ink);
+		line-height: 1.2;
+	}
+	.model__desc {
+		margin-top: 0.28cqw;
+		font-size: 0.94cqw;
+		color: var(--ink-muted);
+		line-height: 1.4;
+	}
+	.key {
+		display: inline-block;
+		font-size: 1cqw;
+		font-weight: 600;
+		letter-spacing: 0.05em;
+		color: var(--ink-body);
+		background: var(--parchment-deep);
+		border-radius: var(--r-sm);
+		padding: 0.34cqw 0.68cqw;
+	}
+	.count {
+		font-family: var(--display);
+		font-size: 2cqw;
+		font-weight: 600;
+		font-variant-numeric: tabular-nums;
+		color: var(--ink);
+		line-height: 1;
+	}
+	/* Designed zero: legible and finished, never mistaken for a broken cell. */
+	.count--zero { color: var(--ink-muted); font-weight: 400; }
+	.count__unit {
+		display: block;
+		margin-top: 0.3cqw;
+		font-family: var(--ui);
+		font-size: 0.82cqw;
+		font-weight: 600;
+		letter-spacing: 0.12em;
+		text-transform: uppercase;
+		color: var(--ink-muted);
+	}
+
+	/* The one full-bleed accent band in this composition. */
+	.band {
+		margin-top: 3cqw;
+		border-radius: 1.2cqw;
+		background: linear-gradient(120deg, var(--seal) 0%, #10422e 62%, var(--seal-deep) 100%);
+		display: grid;
+		grid-template-columns: 1.5fr repeat(3, 1fr);
+		align-items: center;
+		gap: 2cqw;
+		padding: 1.9cqw 2.2cqw;
+		box-shadow: 0 1cqw 2.6cqw rgba(13, 54, 38, 0.22);
+	}
+	.band__lead {
+		font-family: var(--display);
+		font-size: 1.72cqw;
+		font-style: italic;
+		font-weight: 400;
+		line-height: 1.28;
+		color: var(--on-seal);
+	}
+	.stat { border-left: 0.08cqw solid rgba(244, 239, 228, 0.28); padding-left: 1.5cqw; }
+	.stat__num {
+		font-family: var(--display);
+		font-size: 2.6cqw;
+		font-weight: 600;
+		line-height: 1;
+		letter-spacing: -0.02em;
+		color: var(--on-seal);
+		font-variant-numeric: tabular-nums;
+	}
+	.stat__label {
+		margin-top: 0.5cqw;
+		font-size: 0.88cqw;
+		font-weight: 700;
+		letter-spacing: 0.13em;
+		text-transform: uppercase;
+		color: rgba(244, 239, 228, 0.76);
+		line-height: 1.4;
+	}
+
+	footer {
+		margin-top: auto;
+		display: flex;
+		align-items: center;
+		gap: 1.4cqw;
+		padding-top: 2.4cqw;
+		font-size: 1cqw;
+		font-weight: 500;
+		color: var(--ink-muted);
+	}
+	footer strong { color: var(--ink); font-weight: 700; }
+	.rule { flex: 1; height: 0.08cqw; background: var(--rule); }
+</style>
+</head>
+<body>
+	<div class="shot">
+		<header>
+			<span class="eyebrow">Tools › Publishing Health</span>
+			<h1>Can I trust this install?</h1>
+			<p class="lede">One screen answers it: the schema version the database is actually at, every migration step that has run, and each governed model with its published count.</p>
+		</header>
+
+		<div class="grid">
+			<section class="status">
+				<span class="status__flag">Up to date</span>
+				<div class="status__num">2<small> / 2</small></div>
+				<p class="status__caption">Installed schema version, against the version this build expects.</p>
+				<div class="status__steps">
+					<div class="step">
+						<span class="step__tick"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1.6 6.2 4.4 9 10.4 3" fill="none" stroke="#f4efe4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+						<span>Register governed content models and flush rewrite rules.</span>
+					</div>
+					<div class="step">
+						<span class="step__tick"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1.6 6.2 4.4 9 10.4 3" fill="none" stroke="#f4efe4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+						<span>Add per-model approval-state meta and seed default editorial roles.</span>
+					</div>
+				</div>
+			</section>
+
+			<section class="models">
+				<div class="models__head">
+					<span class="models__title">Governed content models</span>
+					<span class="models__meta">3 registered · own capability base each</span>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th scope="col">Model</th>
+							<th scope="col">Post type key</th>
+							<th scope="col">Published</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>
+								<div class="model__name">Programs</div>
+								<div class="model__desc">A structured offering with governed layout and metadata.</div>
+							</td>
+							<td><span class="key">ep_program</span></td>
+							<td><span class="count">1</span><span class="count__unit">published</span></td>
+						</tr>
+						<tr>
+							<td>
+								<div class="model__name">Events</div>
+								<div class="model__desc">A time-bound happening with date metadata and related programs.</div>
+							</td>
+							<td><span class="key">ep_event</span></td>
+							<td><span class="count count--zero">0</span><span class="count__unit">published</span></td>
+						</tr>
+						<tr>
+							<td>
+								<div class="model__name">Stories</div>
+								<div class="model__desc">Editorial narrative content linked to programs and people.</div>
+							</td>
+							<td><span class="key">ep_story</span></td>
+							<td><span class="count count--zero">0</span><span class="count__unit">published</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</section>
+		</div>
+
+		<section class="band">
+			<p class="band__lead">Governance you can point&nbsp;at, not governance you have to take on trust.</p>
+			<div class="stat">
+				<div class="stat__num">3</div>
+				<div class="stat__label">Governed models</div>
+			</div>
+			<div class="stat">
+				<div class="stat__num">30</div>
+				<div class="stat__label">Capabilities installed</div>
+			</div>
+			<div class="stat">
+				<div class="stat__num">2</div>
+				<div class="stat__label">Migration steps applied</div>
+			</div>
+		</section>
+
+		<footer>
+			<span><strong>Requires manage_options.</strong> Checked on render, not only on the menu.</span>
+			<span class="rule"></span>
+			<span>A database newer than the build refuses to downgrade.</span>
+		</footer>
+	</div>
+</body>
+</html>
