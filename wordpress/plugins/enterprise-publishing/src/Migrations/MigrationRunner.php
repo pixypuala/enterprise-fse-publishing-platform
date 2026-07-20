@@ -20,7 +20,13 @@ use Pixypuala\EnterprisePublishing\Capabilities\CapabilityInstaller;
  */
 final class MigrationRunner {
 
-	private const OPTION = 'enterprise_publishing_schema_version';
+	/**
+	 * Option holding the installed schema version.
+	 *
+	 * Public so activation can guarantee it stays autoloaded; it is read on
+	 * every request.
+	 */
+	public const OPTION = 'enterprise_publishing_schema_version';
 
 	public function __construct(
 		private readonly SchemaVersion $schema,
@@ -39,8 +45,13 @@ final class MigrationRunner {
 
 		foreach ( array_keys( $this->schema->pending( $installed ) ) as $version ) {
 			$this->apply_step( $version );
-			// Persist after each step so an interrupted run resumes correctly.
-			update_option( self::OPTION, $version, false );
+			/*
+			 * Persist after each step so an interrupted run resumes correctly,
+			 * and autoload it: this option is read on `init` for every request,
+			 * so anything else costs the whole site an uncached query per page
+			 * view to learn that no migration is pending.
+			 */
+			update_option( self::OPTION, $version, true );
 		}
 	}
 

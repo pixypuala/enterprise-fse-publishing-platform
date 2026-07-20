@@ -78,6 +78,16 @@ final class Plugin {
 		);
 		$runner->run_if_needed();
 
+		/*
+		 * The schema version is read on `init` for every request. An install that
+		 * stored it before it was autoloaded pays an uncached query per page view
+		 * for that read, so repair it here rather than leaving the cost in place
+		 * for the lifetime of the site.
+		 */
+		if ( function_exists( 'wp_set_option_autoload' ) ) {
+			wp_set_option_autoload( MigrationRunner::OPTION, true );
+		}
+
 		flush_rewrite_rules();
 	}
 
